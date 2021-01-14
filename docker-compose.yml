@@ -4,8 +4,6 @@ services:
     container_name: home-nginx
     restart: always
     image: nginx:1.18.0
-    depends_on:
-      - web
     ports:
       - 80:80
       - 443:443
@@ -25,7 +23,6 @@ services:
       MYSQL_DATABASE: backend_database
       MYSQL_USER: root
       MYSQL_PASSWORD: root
-    command: bash -c "mysql start"
 
   web:
     container_name: springboot
