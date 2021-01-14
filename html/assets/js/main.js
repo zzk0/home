@@ -56,5 +56,15 @@ $(document).ready(function () {
 		};
 	});
 
+	$.ajax({
+		type: "POST",
+		url: 'https://120.78.167.47:8080/footprint/record',
+		data: JSON.stringify({ 
+			'url': window.location.href 
+		}),
+		dataType: 'json',
+		contentType: 'application/json;'
+	});
+
 });
 

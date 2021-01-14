@@ -1,5 +1,6 @@
 package top.zzk0.util.web;
 
+import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
 import top.zzk0.util.constants.ErrorEnum;
 import top.zzk0.api.exception.ResponseException;
@@ -31,7 +32,14 @@ public class RequestUtil {
         catch (IOException e) {
             e.printStackTrace();
         }
-        return JSONObject.parseObject(jsonStr.toString());
+        JSONObject requestJson = null;
+        try {
+            requestJson = JSONObject.parseObject(jsonStr.toString());
+        }
+        catch (JSONException jsonException) {
+            throw new ResponseException(ErrorEnum.A0102);
+        }
+        return requestJson;
     }
 
     /**
