@@ -1,10 +1,12 @@
 version: '3'
-services: 
+services:
   nginx:
     container_name: home-nginx
     restart: always
     image: nginx:1.18.0
-    ports: 
+    depends_on:
+      - web
+    ports:
       - 80:80
       - 443:443
     volumes:
@@ -13,17 +15,17 @@ services:
   db:
     container_name: home-db
     restart: always
-    image: mysql:8.0.22
-    ports: 
+    image: mysql:8.0.13
+    ports:
       - 7706:3306
     volumes:
-      - ./mysql/db.sql:/usr/db.sql
+      - ./data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: backend_database
       MYSQL_USER: root
       MYSQL_PASSWORD: root
-  
+
   web:
     container_name: springboot
     restart: always
@@ -35,3 +37,4 @@ services:
     volumes:
       - ./web/api.jar:/usr/api.jar
     command: bash -c "java -jar /usr/api.jar"
+
