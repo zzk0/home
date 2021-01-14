@@ -1,0 +1,31 @@
+plugins {
+	id 'org.springframework.boot' version '2.4.1'
+	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+	id 'java'
+}
+
+group = 'top.zzk0'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	// spring 相关
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.4'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	// 数据库相关, connector 版本要对上
+	compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.13'
+	compile group: 'com.baomidou', name: 'mybatis-plus-boot-starter', version: '3.4.1'
+
+	// 工具
+	compile 'com.alibaba:fastjson:1.2.73'
+}
+
+test {
+	useJUnitPlatform()
+}

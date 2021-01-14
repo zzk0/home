@@ -25,6 +25,7 @@ services:
       MYSQL_DATABASE: backend_database
       MYSQL_USER: root
       MYSQL_PASSWORD: root
+    command: bash -c "mysql start"
 
   web:
     container_name: springboot
