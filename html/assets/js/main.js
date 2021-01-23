@@ -58,7 +58,7 @@ $(document).ready(function () {
 
 	$.ajax({
 		type: "POST",
-		url: 'https://120.78.167.47:8080/footprint/record',
+		url: 'https://api.zzk0.top/footprint/record',
 		data: JSON.stringify({ 
 			'url': window.location.href 
 		}),

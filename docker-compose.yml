@@ -25,7 +25,7 @@ services:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./data/certbot/conf:/etc/letsencrypt
       - ./data/certbot/www:/var/www/certbot
-    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+    command: "/bin/sh -c 'while :; do sleep 720h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
 
   db:
     container_name: home-db
@@ -44,10 +44,10 @@ services:
   web:
     container_name: springboot
     restart: always
-    image: openjdk:8
+    image: gradle:6.7.1-jdk8
     depends_on:
       - db
     volumes:
-      - ./web/api.jar:/usr/api.jar
-    command: bash -c "java -jar /usr/api.jar"
+      - ./api:/home/gradle/project
+    command: bash -c "cd /home/gradle/project && gradle bootRun"
 
