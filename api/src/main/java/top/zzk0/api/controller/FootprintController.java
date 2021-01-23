@@ -22,14 +22,9 @@ public class FootprintController {
         this.footprintService = footprintService;
     }
 
-    @PostMapping("/record")
+    @GetMapping("/record")
     public void addFootprint(HttpServletRequest request, HttpServletResponse response) {
-        JSONObject requestJson = RequestUtil.retrieveJson(request);
-        RequestUtil.hasAllRequired(requestJson, "url");
-        String accessIp = HttpUtil.getRequestIp(request);
-        String url = requestJson.getString("url");
-
-        footprintService.insertFootprint(accessIp, url, 0);
+        // Do Nothing, let NGINX do the things
         ResponseUtil.responseJson(response, ResponseUtil.successJson());
     }
 }
