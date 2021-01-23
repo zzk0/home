@@ -22,7 +22,7 @@ public class FootprintController {
         this.footprintService = footprintService;
     }
 
-    @GetMapping("/record")
+    @PostMapping("/record")
     public void addFootprint(HttpServletRequest request, HttpServletResponse response) {
         // Do Nothing, let NGINX do the things
         ResponseUtil.responseJson(response, ResponseUtil.successJson());
